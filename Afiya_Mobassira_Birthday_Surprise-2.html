@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Afiya Mobassira ❤️</title>
+<style>
+*{box-sizing:border-box} body{margin:0;min-height:100vh;overflow:hidden;font-family:"Noto Sans Bengali",system-ui,sans-serif;background:radial-gradient(circle at top,#5d214f,#180b25 65%,#090611);color:#fff;display:flex;align-items:center;justify-content:center}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}.heart{position:absolute;bottom:-40px;font-size:22px;animation:float linear infinite;opacity:.7}
+@keyframes float{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.card{width:min(92%,680px);padding:34px 24px 30px;text-align:center;border:1px solid rgba(255,255,255,.2);border-radius:28px;background:rgba(255,255,255,.09);backdrop-filter:blur(14px);box-shadow:0 25px 80px rgba(0,0,0,.45);position:relative;z-index:2}
+.badge{display:inline-block;padding:7px 14px;border-radius:99px;background:rgba(255,105,180,.15);border:1px solid rgba(255,182,220,.3);font-size:13px;letter-spacing:1px}
+h1{font-size:clamp(34px,8vw,64px);margin:16px 0 4px;color:#ffd6eb;text-shadow:0 0 25px #ff5fa8}.subtitle{font-size:20px;margin:0 0 20px;color:#ffd7ea}
+.cake{font-size:92px;filter:drop-shadow(0 0 18px #ff76b7);animation:bob 2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px)}}
+.message{font-size:18px;line-height:1.9;background:rgba(0,0,0,.16);border-radius:20px;padding:18px;margin:20px 0;color:#fff0f7}
+button{border:0;border-radius:999px;padding:15px 28px;font-size:17px;font-weight:700;cursor:pointer;color:#4a1234;background:linear-gradient(135deg,#ffd2e7,#ff78b6);box-shadow:0 8px 25px rgba(255,89,164,.35);transition:.2s}button:hover{transform:scale(1.05)}
+#surprise{display:none;margin-top:22px;font-size:21px;color:#ffe1ef;animation:pop .7s ease}@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.footer{margin-top:20px;font-size:12px;color:#d9b7ca}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:10}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div><canvas id="confetti"></canvas>
+<main class="card">
+  <div class="badge">A LITTLE SURPRISE FOR YOU ❤️</div>
+  <div class="cake">🎂</div>
+  <h1>Happy Birthday!</h1>
+  <div class="subtitle">আমার প্রিয় Afiya Mobassira 💕</div>
+  <div class="message">শুভ জন্মদিন আমার পারফেক্ট ঝগড়ার পার্টনারকে! 😜<br>যত রাগই করো না কেন, তুমি ছাড়া কিন্তু আমার এক মুহূর্তও চলে না।<br>দিনটা দারুণভাবে উপভোগ করো, আর হ্যাঁ—ট্রিট কিন্তু বাকি রইলো! 🎁❤️</div>
+  <button id="btn">🎁 সারপ্রাইজ খুলুন</button>
+  <div id="surprise">তুমি আমার প্রতিদিনের সবচেয়ে সুন্দর কারণ। ❤️<br>আজকের দিনটা শুধু তোমার—অনেক হাসো, অনেক খুশি থাকো! 🥰✨</div>
+  <div class="footer">Made with ❤️ just for Afiya</div>
+</main>
+<script>
+const hearts=document.getElementById('hearts');
+for(let i=0;i<22;i++){const h=document.createElement('span');h.className='heart';h.textContent=['❤️','💗','💕','💖','✨'][i%5];h.style.left=Math.random()*100+'%';h.style.animationDuration=(6+Math.random()*8)+'s';h.style.animationDelay=(-Math.random()*10)+'s';h.style.fontSize=(14+Math.random()*20)+'px';hearts.appendChild(h)}
+const c=document.getElementById('confetti'),ctx=c.getContext('2d');let pieces=[],running=false;
+function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener('resize',resize);
+function burst(){pieces=[];for(let i=0;i<180;i++)pieces.push({x:innerWidth/2,y:innerHeight*.55,vx:(Math.random()-.5)*14,vy:-(Math.random()*12+6),g:.25,s:4+Math.random()*7,r:Math.random()*6});running=true;requestAnimationFrame(loop)}
+function loop(){ctx.clearRect(0,0,c.width,c.height);pieces.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=.1;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=`hsl(${Math.random()*360},90%,70%)`;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s);ctx.restore()});pieces=pieces.filter(p=>p.y<c.height+20);if(pieces.length)requestAnimationFrame(loop);else running=false}
+document.getElementById('btn').onclick=()=>{document.getElementById('surprise').style.display='block';document.getElementById('btn').textContent='💖 Surprise Unlocked!';burst()}
+</script>
+</body>
+</html>
